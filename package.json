@@ -1,0 +1,19 @@
+{
+  "name": "board",
+  "version": "1.0.0",
+  "description": "Programmatismos sto diadikyto",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/petrostriant/board.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/petrostriant/board/issues"
+  },
+  "homepage": "https://github.com/petrostriant/board#readme"
+}
