@@ -4,14 +4,6 @@ const DBLP = require('dblp-json/dblp');
 const dblp = new DBLP();
 const Article = require('../../model/Article');
 
-
-async function extractInfo() {
-    const tiago_json = await dblp.getByPID("https://dblp.uni-trier.de/pers/xx/e/E:Afshin_Ameri.xml");
-    printJS(tiago_json.getJSON());
-  }
-
-extractInfo();
-
 router.get('/',(req,res) =>{
     Article.find().then((articles) => {
         res.json(articles);
@@ -21,14 +13,6 @@ router.get('/',(req,res) =>{
 );
 
 
-router.post('/', async (req, res) => {
-  const post = await req.context.models.Message.create({
-    text: req.body.text,
-    user: req.context.me.id,
-  });
- 
-  return res.send(message);
-});
 
 router.get('/:userId', async (req, res) => {
   const user = await req.context.models.User.findById(req.params.userId );
@@ -36,11 +20,6 @@ router.get('/:userId', async (req, res) => {
 });
 
 
-async function extractInfo() {
-    const tiago_json = await dblp.getByName('Tiago', 'Brito');
-    const json = tiago_json.getRawJSON;
-    return(tiago_json.getRawJSON(), null, 2);
-  }
 
 router.get('/getFromDBLPLINK',async (req, res, next) => {
   try {

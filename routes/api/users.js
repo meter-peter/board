@@ -33,7 +33,8 @@ router.post('/register', (req, res) => {
                 msg: "Username is already taken."
             });
         }
-    })
+    }).catch(err=>{
+        return res.send(err);    })
     // Check for the Unique Email
     User.findOne({
         email: email
