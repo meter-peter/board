@@ -10,6 +10,9 @@
   </div>
 </template>
 <script>
+
+
+
 import { mapGetters } from "vuex";
 import Navbar from "@/components/Navbar";
 import Errors from "@/components/Errors";

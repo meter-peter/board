@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <router-link class="navbar-brand" to="/">MEVN-Auth</router-link>
+    <router-link class="navbar-brand" to="/">VueCitatations</router-link>
     <button
       class="navbar-toggler"
       type="button"
@@ -20,6 +20,19 @@
             <span class="sr-only">(current)</span>
           </router-link>
         </li>
+        <li v-if="isLoggedIn" class="nav-item">
+        <div class="dropdown show">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Add a citation
+  </a>
+
+  <div  class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="#">Create a reference </a>
+    <a class="dropdown-item" href="#">Import from dblp</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div>
+</li>
         <li class="nav-item">
           <router-link to="/about" class="nav-link">About</router-link>
         </li>

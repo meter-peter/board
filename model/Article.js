@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const Author = require('./Author')
 const Schema = mongoose.Schema;
 
 const ArticleSchema = new Schema({
@@ -23,7 +23,8 @@ const ArticleSchema = new Schema({
     type:{
         type:String,
         required:true
-    }
+    },
+    authors:[{ type: Schema.Types.ObjectId, ref: 'Author' }]
 });
 
 module.exports = Article = mongoose.model('posts',ArticleSchema);

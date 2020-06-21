@@ -14,11 +14,6 @@ const router = new Router({
       component: Home
     },
     {
-      path: '/about',
-      name: 'about',
-      component: () => import('../views/About.vue')
-    },
-    {
       path: '/login',
       name: 'login',
       component: () => import('../views/Login.vue'),
@@ -42,6 +37,44 @@ const router = new Router({
         requiresAuth: true
       }
     },
+    {
+      path: '/author',
+      name: 'author',
+      component: () => import('../views/Author.vue'),
+      meta: {
+      }
+    },
+
+      {
+        path: '/browse',
+        name: 'browse',
+        component: () => import('../views/Browse.vue'),
+        meta: {
+        }
+      },
+      {
+        path: '/organization',
+        name: 'organization',
+        component: () => import('../views/Organization.vue'),
+        meta: {
+        }
+      },
+      {
+        path: '/profile',
+        name: 'profile',
+        component: () => import('../views/Profile.vue'),
+        meta: {
+          requiresAuth: true
+        }
+      },
+      {
+        path: '/dashboard',
+        name: 'dashboard',
+        component: () => import('../views/Dashboard.vue'),
+        meta: {
+          requiresAuth: true
+        }
+      }
   ]
 });
 

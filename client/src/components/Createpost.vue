@@ -7,14 +7,14 @@
     
             <form>
                   <div class="form-group has-error">
-                    <label for="name">Title<span class="require">*</span> <small>(This field use in url path.)</small></label>
+                    <label for="name">Title<span class="require">*</span></label>
                     <input 
                     id="name"
                     type="text" 
                     class="form-control" 
                     name="name"
                     v-model="name" />
-                    <span class="help-block">Field not entered!</span>
+
                 </div>
     
                 <div class="form-group">
@@ -35,6 +35,16 @@
                     name="year"
                     v-model="year" />
                 </div>
+                <div class="form-group">
+                    <label for="desc">Description <span class="require">*</span></label>
+                    <textarea 
+                    id="desc"
+                    type="text" 
+                    class="form-control"
+                    name="desv"
+                    rows="3"
+                    v-model="desc"></textarea>
+                </div>
 
     
                 <div class="form-group">
@@ -51,3 +61,4 @@
           <div class="col-md-8 col-md-offset-2"></div>
         </div>
 </template>
+
