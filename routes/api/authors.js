@@ -12,9 +12,20 @@ router.get('/',(req,res) =>{
     }
 );
 
+router.put('/update',function(req,res){
+    Article.findByIdAndUpdate(req.body._id,req.body,function(err,body){
+      if(err){
+        res.send(err);
+  
+      }
+      res.send(body);
+    });
+  })
+
 router.post('/', async (req, res) => {
    let {name,lastname,orcid,personal,quality} =req.body;
-   Author.findOne({name:name}).catch(err=>{
+   Author.findOne({name:name})
+   .catch(err=>{
        return res.send(err);
    })
    .then(user=>{

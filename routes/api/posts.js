@@ -12,12 +12,52 @@ router.get('/',(req,res) =>{
     }
 );
 
-
-
-router.get('/:userId', async (req, res) => {
-  const user = await req.context.models.User.findById(req.params.userId );
-  return res.send(user);
+router.delete('/:articleId', async (req, res) => {
+  const article = await Article.findById(
+    req.params.articleId,
+  );
+ 
+  if (article) {
+    await article.remove();
+  }
+ 
+  return res.send(article);
 });
+
+router.put('/update',function(req,res){
+  Article.findByIdAndUpdate(req.body._id,req.body,function(err,body){
+    if(err){
+      res.send(err);
+
+    }
+    res.send(body);
+  });
+})
+
+router.post('/', async (req, res) => {
+  var newArticle = new Article(req.body);
+  Article.findOne({title:newArticle.title})
+  .catch(err=>{
+      return res.send(err);
+  })
+  .then(article=>{
+      if(article){
+          return res.status(400).json({
+              msg: "Article Already Exists"
+          });
+      }
+  }).catch(err=>{
+      return res.send(err)
+  });
+  
+  newArticle.save().then(()=>{
+      return res.status(201).json({
+          success:true,
+          msg:"Successfully added"
+      })
+  });
+});
+
 
 
 

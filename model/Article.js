@@ -3,28 +3,27 @@ const Author = require('./Author')
 const Schema = mongoose.Schema;
 
 const ArticleSchema = new Schema({
-    name :{
+    type :{
         type :String , 
         required:true
     },
-    username:{
+    title:{
         type : String ,
         required:true
     },
-    email:{
-        type:String ,
+    year:{
+        type:Number ,
         required :true
     
     },
-    password:{
+    key:{
         type:String,
-        required:true
+        required:false
     },
-    type:{
-        type:String,
-        required:true
-    },
-    authors:[{ type: Schema.Types.ObjectId, ref: 'Author' }]
+    authors:{
+        type:[{ type: Schema.Types.ObjectId, ref: Author }],
+    required:false
+    }
 });
 
 module.exports = Article = mongoose.model('posts',ArticleSchema);

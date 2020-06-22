@@ -10,7 +10,7 @@ const posts = {
     },
     mutations: {
         SET_POSTS(state,data){
-            state.posts = data
+            state.posts = data;
         }
 
     },
