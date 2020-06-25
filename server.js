@@ -54,6 +54,9 @@ app.use('/api/posts',posts);
 const authors = require('./routes/api/authors')
 app.use('/api/authors',authors);
 
+const adminUsers = require('./routes/admin/users');
+app.use('admin/users',adminUsers)
+
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/index.html'));

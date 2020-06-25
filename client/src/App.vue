@@ -1,4 +1,6 @@
+
 <template>
+<v-app>
   <div id="app">
     <Navbar/>
     <br>
@@ -8,6 +10,7 @@
       <router-view/>
     </div>
   </div>
+</v-app>
 </template>
 <script>
 

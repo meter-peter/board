@@ -12,6 +12,15 @@ router.get('/',(req,res) =>{
     }
 );
 
+
+router.get('/:articleID',async (req,res)=>{
+  const article = await Article.findById(
+    req.params.articleId
+  );
+  res.send(article);
+
+})
+
 router.delete('/:articleId', async (req, res) => {
   const article = await Article.findById(
     req.params.articleId,
@@ -36,6 +45,7 @@ router.put('/update',function(req,res){
 
 router.post('/', async (req, res) => {
   var newArticle = new Article(req.body);
+  console.log(req.body);
   Article.findOne({title:newArticle.title})
   .catch(err=>{
       return res.send(err);

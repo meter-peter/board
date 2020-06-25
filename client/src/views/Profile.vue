@@ -1,6 +1,5 @@
 <template><div>
 <Profile></Profile>
-<Posts></Posts>
 
 </div>
 </template>

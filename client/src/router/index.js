@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../views/Home.vue'
 import store from '../store/index';
+import admin from '../store/Admin';
 
 Vue.use(Router)
 
@@ -74,8 +75,24 @@ const router = new Router({
         meta: {
           requiresAuth: true
         }
-      }
-  ]
+      },
+      {
+        path:'/add-post',
+        name:'add-post',
+        component: () => import('../components/Createpost.vue'),
+        meta : {
+          requiresAuth:true
+        }
+      },
+      {
+      path:'/post-edit',
+      name:'post-edit',
+      component: () => import('../components/EditPost.vue')
+      },
+    {path:'/admin',
+  name:admin,
+component:()=> import('../views/Adminpanel.vue')
+}]
 });
 
 router.beforeEach((to, from, next) => {

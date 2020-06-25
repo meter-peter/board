@@ -23,6 +23,10 @@ const ArticleSchema = new Schema({
     authors:{
         type:[{ type: Schema.Types.ObjectId, ref: Author }],
     required:false
+    },
+    desc:{
+        type:String ,
+        required:true
     }
 });
 

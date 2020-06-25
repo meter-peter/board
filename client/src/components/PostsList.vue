@@ -1,116 +1,80 @@
-<template id="product-list">
-    <div>
-    
-        <div class="actions">
-    
-            <a class="btn btn-default">
-    
-                <router-link :to="{path: '/add-product'}">
-    
-                    <span class="glyphicon glyphicon-plus"></span> Add product
-    
-                </router-link>
-    
-            </a>
-    
-        </div>
-    
-        <div class="filters row">
-    
-            <div class="form-group col-sm-3">
-    
-                <label for="search-element">Name</label>
-    
-                <input v-model="searchKey" class="form-control" id="search-element" requred/>
-    
-            </div>
-    
-        </div>
-    
-        <table class="table">
-    
-            <thead>
-    
-                <tr>
-    
-                    <th>Name</th>
-    
-                    <th>Description</th>
-    
-                    <th>Author</th>
-    
-                    <th class="col-sm-2">Actions</th>
-    
-                </tr>
-    
-            </thead>
-    
-            <tbody>
-    
-                <tr v-for="post in filteredPosts" :key="post.id">
-    
-                    <!-- tr v-for="product in products" -->
-    
-                    <!-- tr v-for="product in products | filterBy searchKey in 'name'" -->
-    
-                    <td>
-    
-                        <a>
-    
-                            <router-link :to="{name: 'product', params: {product_id: product.id}}">{{ product.name }}</router-link>
-    
-                        </a>
-    
-                    </td>
-    
-                    <td>{{ post.description }}</td>
-    
-                    <td>
-    
-                        {{ post.author }}
-    
-                        <span class="glyphicon glyphicon-euro" aria-hidden="true"></span>
-    
-                    </td>
-    
-                    <td>
-    
-                        <a class="btn btn-warning btn-xs">
-    
-                            <router-link :to="{name: 'product-edit', params: {product_id: product.id}}">Edit</router-link>
-    
-                        </a>
-    
-                        <a class="btn btn-danger btn-xs">
-    
-                            <router-link :to="{name: 'product-delete', params: {product_id: product.id}}">Delete</router-link>
-    
-                        </a>
-    
-                    </td>
-    
-                </tr>
-    
-            </tbody>
-    
-        </table>
-    
-    </div>
+<template>
+  <div>
+    <h1>posts</h1>
+     <v-overlay
+          :absolute="absolute"
+          :opacity="opacity"
+          :value="overlay"
+          :z-index="zIndex"
+        >
+        <EditPost postid="post.__id"></EditPost>
+          <v-btn
+            color="primary"
+            @click="overlay = false"
+          >
+            Hide Overlay
+          </v-btn>
+        </v-overlay>
+    <table id="posts" class="ui celled compact table">
+      <thead>
+        <tr>
+         <th>  <i class="calendar plus icon"></i>post</th>
+          <th> <i class="info circle icon"></i>Detail</th>
+                    <th> <i class="lock open icon"></i></th>
+                   <th> <i class="edit icon"></i></th>
+                    <th> <i class="trash icon"></i></th>
+
+
+
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tr v-for="post in posts" :key="post.__id">
+        <td>{{ post.title }}</td>
+        <td>{{ post.authors[0] }}</td>
+        <td width="75" class="center aligned">
+          <router-link :to="{ name: 'show', params: { idfeed: post._id }}">Show</router-link>
+        </td>
+        <td width="75" class="center aligned">
+         <v-btn
+          color="green"
+          @click="overlay = !overlay"
+        >
+          Edit
+        </v-btn>
+
+      
+          
+        </td>
+        <td width="75" class="center aligned" @click.prevent="onDestroy(post._id)">
+          <a :href="`/posts/${post._id}`">Delete</a>
+        </td>
+      </tr>
+    </table>
+  </div>
 </template>
 
 
 
-
-
 <script>
+import EditPost from '../components/EditPost'
 import { mapState } from 'vuex'
 export default {
+ 
+
+  components:{
+    EditPost
+  },
     computed: {
         ...mapState('posts', ['posts'])
     },
     created() {
         this.$store.dispatch('posts/loadposts')
-    }
+    }, data: () => ({
+      absolute: true,
+      overlay: false,
+      overlay2:false
+    }),
 
 }
 </script>
